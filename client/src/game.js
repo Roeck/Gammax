@@ -17,7 +17,7 @@ class Game {
         for(let game of this.allGames) {
             game.renderGame()
         }
-    }    
+    }
 
     static fetchGames() {
         fetch(gamesURL)
@@ -33,14 +33,14 @@ class Game {
     renderGame() {
 
         const gameLi = document.createElement('card')
-        gameLi.dataset.id = this.id
+        gameLi.dataset.id = this.id 
         gameList.appendChild(gameLi)
 
         const h3 = document.createElement('h3')
         h3.className = ("h3")
-        h3.innerText = this.name
+        h3.innerText = this.name 
 
-        const h6 = document.createElement('h6')
+        const p = document.createElement('h6')
         p.className = ("card-text")
         p.innerText = "Producer: " + this.producer + " | " + "Score: " + this.score
 
@@ -48,7 +48,9 @@ class Game {
         img.src = this.image
         img.width = 130
 
-    })
+        gameLi.append(h3, img, p)
+
+    }
 
     static submitGame(s) {
         s.preventDefault()
@@ -67,11 +69,10 @@ class Game {
         })
             .then(response => response.json())
             .then(game => {
-                let newGame = new Game(game.data)
+                let newGame=new Game(game.data)
                 // console.log(newGame)
                 newGame.renderGame()
                 gameForm.reset()
             })
     }
-
 }

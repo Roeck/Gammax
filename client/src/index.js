@@ -6,4 +6,6 @@ const gameScore = document.getElementById("game-score")
 const gameImage = document.getElementById("game-image")
 const gameList = document.getElementById("card")
 
+Game.fetchGames()
+gameForm.addEventListener("submit", Game.submitGame)
 

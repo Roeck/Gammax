@@ -34,8 +34,34 @@
             <div class="layer"></div>
             <div class="layer"></div>
         </div>
+        <br>
 
+
+    <div class="container">
+        <div class="header">
+            <h3 class="display-3">Add a game to your collection:</h3>
         </div>
+        <form id="game-form">
+            <div class="form-group">
+                <input type="text" class="form-control" id="game-name" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="game-producer" placeholder="Producer">
+            </div>
+            <div class="form-group">
+                <input type="float" class="form-control" id="game-score" placeholder="Score">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="game-image" placeholder="Image">
+            </div>
+            <input type="submit" class="btn btn-secondary btn" />
+        </form>
+        <br>
+    </div>
+    
+    <div class="card" id="card">
+    </div>
+
         <script src="./src/comment.js"></script>
         <script src="./src/game.js"></script>
         <script src="./src/index.js"></script>
