@@ -13,6 +13,17 @@ class Game {
         Game.allGames.push(this)
     }
 
+    static fetchGames() {
+        fetch(gamesURL)
+            .then(response => response.json())
+            .then(games => {
+                for(let game of games.data) {
+                    let newGame = new Game(game)
+                }
+                // this.renderGames()
+            })
+    }
+
     static submitGame(s) {
         s.preventDefault()
         fetch(gamesURL,{
