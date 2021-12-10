@@ -13,6 +13,12 @@ class Game {
         Game.allGames.push(this)
     }
 
+    static renderGames() {
+        for(let game of this.allGames) {
+            game.renderGame()
+        }
+    }    
+
     static fetchGames() {
         fetch(gamesURL)
             .then(response => response.json())
@@ -20,9 +26,17 @@ class Game {
                 for(let game of games.data) {
                     let newGame = new Game(game)
                 }
-                // this.renderGames()
+                this.renderGames()
             })
     }
+
+    renderGame() {
+
+        const gameLi = document.createElement('card')
+        gameLi.dataset.id = this.id
+        gameList.appendChild(gameLi)
+
+    })
 
     static submitGame(s) {
         s.preventDefault()

@@ -151,3 +151,14 @@ body {
       transform: rotateY(-40deg) rotateX(-43deg);
     }
   }
+
+/* CARD */
+
+#card {
+  display: contents;
+  background-color:#14151f;
+  color: white;
+  border-width: 2px;
+  border-color: white;
+}
+
