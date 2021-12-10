@@ -1,6 +1,6 @@
 class Game {
 
-    static allGames=[]
+    static allGames = []
 
     constructor(game) {
         this.id = game.id
@@ -12,4 +12,5 @@ class Game {
 
         Game.allGames.push(this)
     }
+
 }
