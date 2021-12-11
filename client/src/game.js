@@ -69,10 +69,20 @@ class Game {
         })
             .then(response => response.json())
             .then(game => {
-                let newGame=new Game(game.data)
+                let newGame = new Game(game.data)
                 // console.log(newGame)
                 newGame.renderGame()
                 gameForm.reset()
             })
+    }
+
+    deleteGame() {
+        const gameId = this.parentElement.dataset.id
+
+        fetch(`${gamesURL}/${gameId}`,{
+            method: "DELETE"
+        })
+        // .catch(err => alert(err))
+        this.parentElement.remove()
     }
 }
