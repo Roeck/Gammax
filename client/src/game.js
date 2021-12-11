@@ -46,9 +46,14 @@ class Game {
 
         const img = document.createElement('img')
         img.src = this.image
-        img.width = 130
+        img.width=130
+        
+        const deleteButton = document.createElement('button')
+        deleteButton.className = "btn btn-outline-secondary"
+        deleteButton.innerText = "Remove"
+        deleteButton.addEventListener("click",this.deleteGame)
 
-        gameLi.append(h3, img, p)
+        gameLi.append(h3, img, p, deleteButton)
 
     }
 
