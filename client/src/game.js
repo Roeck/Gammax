@@ -55,7 +55,7 @@ class Game {
 
         const commentForm = document.createElement('form')
         commentForm.innerHTML += `<input type="text" class="input mb-3" id="comment-input" placeholder="Comment">
-        <input type="submit" class="btn btn-sm btn-primary" value="Post">`
+    <input type="submit" class="btn btn-sm btn-primary" value="Post">`
 
         commentForm.addEventListener("submit", Comment.createComment)
 
@@ -67,7 +67,7 @@ class Game {
             newComment.renderComment(commentList)
         })
 
-        gameLi.append(h3, img, p, commentList, commentForm)
+        gameLi.append(h3, img, p, commentList, commentForm, deleteButton)
 
     }
 

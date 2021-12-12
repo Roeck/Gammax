@@ -24,6 +24,13 @@ class Comment {
         p.dataset.id = this.id
         p.innerText = "- " + this.text + " "
 
+        const deleteButton = document.createElement('button')
+        deleteButton.innerText = "Delete"
+        deleteButton.className = "btn btn-outline-danger btn-sm"
+
+        p.append(deleteButton)
+
+        deleteButton.addEventListener("click", this.deleteComment)
         commentList.appendChild(p)
     }
 
@@ -48,4 +55,13 @@ class Comment {
 
     }
 
+    deleteComment() {
+
+        const commentId = this.parentElement.dataset.id
+        fetch(`${commentsURL}/${commentId}`, {
+            method: "DELETE"
+        })
+
+        this.parentElement.remove()
+    }
 }
