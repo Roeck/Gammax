@@ -53,7 +53,21 @@ class Game {
         deleteButton.innerText = "Remove"
         deleteButton.addEventListener("click", this.deleteGame)
 
-        gameLi.append(h3, img, p, deleteButton)
+        const commentForm = document.createElement('form')
+        commentForm.innerHTML += `<input type="text" class="input mb-3" id="comment-input" placeholder="Comment">
+        <input type="submit" class="btn btn-sm btn-primary" value="Post">`
+
+        commentForm.addEventListener("submit", Comment.createComment)
+
+        const commentList = document.createElement('p')
+        commentList.className = "list-group list-group-flush"
+        this.comments.forEach(comment => {
+
+            let newComment = new Comment(comment)
+            newComment.renderComment(commentList)
+        })
+
+        gameLi.append(h3, img, p, commentList, commentForm)
 
     }
 

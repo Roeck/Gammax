@@ -13,6 +13,18 @@ class Comment {
         const commentText = e.target.children[0].value
         const commentList = e.target.previousElementSibling
         const gameId = e.target.parentElement.dataset.id
+
+        Comment.submitComment(commentText, commentList, gameId)
+        e.target.reset()
+    }
+
+    renderComment(commentList) {
+
+        const p = document.createElement('p')
+        p.dataset.id = this.id
+        p.innerText = "- " + this.text + " "
+
+        commentList.appendChild(p)
     }
 
     static submitComment(commentText, commentList, gameId) {
@@ -35,4 +47,5 @@ class Comment {
             })
 
     }
+
 }
