@@ -159,28 +159,10 @@ h1 {
 }
 
 
-/* CARD */
+/* CARDS */
 
 #card {
-    display: contents;
-    background-color: #14151f;
+    display: flex;
+    flex-wrap: wrap;
     color: white;
-    border-width: 2px;
-    border-color: white;
-}
-
-.card img {
-    margin-left: 3rem;
-    border-width: 10px;
-}
-
-.card h6 {
-    color: white;
-    padding-top: 1rem;
-    padding-left: 2.5rem;
-}
-
-.card p {
-    color: white;
-    padding-left: 1.3rem;
 }
