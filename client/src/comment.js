@@ -1,11 +1,9 @@
 class Comment {
 
     constructor(comment) {
-
         this.id = comment.id
         this.text = comment.text
         this.game_id = comment.game_id
-            // console.log(comment.id)
     }
 
     static createComment(e) {
@@ -18,24 +16,7 @@ class Comment {
         e.target.reset()
     }
 
-    renderComment(commentList) {
-
-        const p = document.createElement('p')
-        p.dataset.id = this.id
-        p.innerText = "- " + this.text + " "
-
-        const deleteButton = document.createElement('button')
-        deleteButton.innerText = "Delete"
-        deleteButton.className = "btn btn-outline-danger btn-sm"
-
-        p.append(deleteButton)
-
-        deleteButton.addEventListener("click", this.deleteComment)
-        commentList.appendChild(p)
-    }
-
     static submitComment(commentText, commentList, gameId) {
-
         fetch(commentsURL, {
                 method: "POST",
                 headers: {
@@ -52,11 +33,24 @@ class Comment {
                 let newComment = new Comment(comment)
                 newComment.renderComment(commentList)
             })
+    }
 
+    renderComment(commentList) {
+        const p = document.createElement('p')
+        p.dataset.id = this.id
+        p.innerText = "- " + this.text + " "
+
+        const deleteButton = document.createElement('button')
+        deleteButton.innerText = "Delete"
+        deleteButton.className = "btn btn-outline-danger btn-sm"
+
+        p.append(deleteButton)
+
+        deleteButton.addEventListener("click", this.deleteComment)
+        commentList.appendChild(p)
     }
 
     deleteComment() {
-
         const commentId = this.parentElement.dataset.id
         fetch(`${commentsURL}/${commentId}`, {
             method: "DELETE"

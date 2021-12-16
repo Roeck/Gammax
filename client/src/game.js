@@ -13,10 +13,28 @@ class Game {
         Game.allGames.push(this)
     }
 
-    static renderGames() {
-        for (let game of this.allGames) {
-            game.renderGame()
-        }
+    static submitGame(s) {
+        s.preventDefault()
+        fetch(gamesURL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({
+                    name: gameName.value,
+                    producer: gameProducer.value,
+                    score: gameScore.value,
+                    image: gameImage.value,
+                })
+            })
+            .then(response => response.json())
+            .then(game => {
+                let newGame = new Game(game.data)
+                console.log(newGame);
+                newGame.renderGame()
+                gameForm.reset()
+            })
     }
 
     static fetchGames() {
@@ -30,8 +48,13 @@ class Game {
             })
     }
 
-    renderGame() {
+    static renderGames() {
+        for (let game of this.allGames) {
+            game.renderGame()
+        }
+    }
 
+    renderGame() {
         const gameLi = document.createElement('card')
         gameLi.dataset.id = this.id
         gameList.appendChild(gameLi)
@@ -55,7 +78,7 @@ class Game {
 
         const commentForm = document.createElement('form')
         commentForm.innerHTML += `<input type="text" class="input mb-3" id="comment-input" placeholder="Comment">
-    <input type="submit" class="btn btn-sm btn-primary" value="Post">`
+        <input type="submit" class="btn btn-sm btn-primary" value="Post">`
 
         commentForm.addEventListener("submit", Comment.createComment)
 
@@ -69,30 +92,6 @@ class Game {
 
         gameLi.append(h3, img, p, commentList, commentForm, deleteButton)
 
-    }
-
-    static submitGame(s) {
-        s.preventDefault()
-        fetch(gamesURL, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                body: JSON.stringify({
-                    name: gameName.value,
-                    producer: gameProducer.value,
-                    score: gameScore.value,
-                    image: gameImage.value,
-                })
-            })
-            .then(response => response.json())
-            .then(game => {
-                let newGame = new Game(game.data)
-                    // console.log(newGame)
-                newGame.renderGame()
-                gameForm.reset()
-            })
     }
 
     deleteGame() {
